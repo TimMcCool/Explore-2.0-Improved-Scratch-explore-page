@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="/style.css" />
+      <script type="text/javascript" src="/script.js"></script>
+        <title>Explore 2.0</title>
+       <link rel="icon" type="image/x-icon" href="https://replit.com/cdn-cgi/image/width=3840,quality=80,format=auto/https://storage.googleapis.com/replit/images/1670165039521_487ac00dd8e1e555d684e43cb1d5f78b.png">
+   </head>
+   <body>
+      <div id="app">
+         <div class="page">
+               <div>
+                  <div class="outer">
+                     <div class="title-banner masthead">
+                        <div class="inner">
+                           <h1 class="title-banner-h1"><span>Explore 2.0</span></h1>
+                            
+                        </div>
+                     </div>
+                     <div class="sort-controls">
+                        <div class="sub-nav categories">
+                           <a onclick="window.location='/explore/projects/all/'+window.location.search">
+                              <li class={{active('all')}}><span>All</span></li>
+                           </a>
+                           <a onclick="window.location='/explore/projects/animations/'+window.location.search">
+                              <li class="{{active('animations')}}"><span>Animations</span></li>
+                           </a>
+                           <a onclick="window.location='/explore/projects/pen/'+window.location.search">
+                              <li class="{{active('pen')}}"><span>Pen</span></li>
+                           </a>
+                           <a onclick="window.location='/explore/projects/games/'+window.location.search">
+                              <li class="{{active('games')}}"><span>Games</span></li>
+                           </a>
+                           <a onclick="window.location='/explore/projects/intros/'+window.location.search">
+                              <li class="{{active('intros')}}"><span>Intros</span></li>
+                           </a>
+                           <a onclick="window.location='/explore/projects/platformers/'+window.location.search">
+                              <li class="{{active('platformers')}}"><span>Platformers</span></li>
+                           </a>
+                           <a onclick="window.location='/explore/projects/tutorials/'+window.location.search">
+                              <li class="{{active('tutorials')}}"><span>Tutorials</span></li>
+                           </a>
+                           <a onclick="window.location='/explore/projects/contests/'+window.location.search">
+                              <li class="{{active('contests')}}"><span>Contests</span></li>
+                           </a>
+                        </div>
+                     </div>
+                    
+                   <div class="sort-controls-2">
+                        <form class="sort-mode">
+                           <div class="select">
+                              <div class="form-group row">
+                                 <label class="control-label col-sm-3" data-required="false" for="frc-sort-1088"></label>
+                                 <div class="col-sm-9">
+                                    <select class="form-control" name="mode" id="modeselect" onchange="window.location.replace('?mode='+document.getElementById('modeselect').value+'&lang='+document.getElementById('langselect').value)">
+                                        <option selected="selected" value={{modeid}}>{{modename}}</option>
+                                        {% for key, value in modes.items() %}
+                                          <option value={{key}}>{{value}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <span class="help-block">Not Required</span>
+                                 </div>
+                              </div>
+                           </div>
+
+                           <div class="select">
+                              <div class="form-group row">
+                                 <label class="control-label col-sm-3" data-required="false" for="frc-sort-1088"></label>
+                                 <div class="col-sm-9">
+                                    <select class="form-control" name="langselect" id="langselect" onchange="window.location.replace('?mode='+document.getElementById('modeselect').value+'&lang='+document.getElementById('langselect').value)">
+                                        <option selected="selected" value={{langid}}>{{langname}}</option>
+                                        {% for key, value in languages.items() %}
+                                          <option value={{key}}>{{value}}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                    <span class="help-block">Not Required</span>
+                                 </div>
+                              </div>
+                           </div>
+                        </form>
+
+                            <form onsubmit="if (document.getElementById('tagForm').value == '') {return False}; window.location.replace('/explore/projects/'+document.getElementById('tagForm').value.replaceAll('#', '')+window.location.search); return false">
+                              <input type="text" id="tagForm" name="" value="" placeholder="Custom Tag">
+                              <input type="submit" value="Submit" class="button">
+                            </form> 
+                     </div>
+                      
+                     <div id="projectBox">
+                        <!--<p class='notification'>This website isn't maintained anymore and may not work</p>-->
+                        <div class="grid">
+                           <div class="flex-row" id="projectGrid">
+                                {% for value in data %}
+                                    <div class="thumbnail project">
+                                 <a class="thumbnail-image" target="_blank" href="https://scratch.mit.edu/projects/{{value['id']}}/"><img alt="" src="https://cdn2.scratch.mit.edu/get_image/project/{{value['id']}}_480x360.png"></a>
+                                 <div class="thumbnail-info">
+                                    <div class="thumbnail-title">
+                                       <a target="_blank" href="https://scratch.mit.edu/projects/{{value['id']}}/" title="{{value['title']}}">{{value["title"]}}</a>
+                                       <div class="thumbnail-creator"><a target="_blank" href="https://scratch.mit.edu/users/{{value['author']}}/">{{value['author']}}</a></div>
+                                    </div>
+                                 </div>
+                              </div>
+                                {% endfor %}
+                              <!--<div class="thumbnail project">
+                                 <a class="thumbnail-image" href="/projects/707844138/"><img alt="" src="https://cdn2.scratch.mit.edu/get_image/project/707844138_480x360.png"></a>
+                                 <div class="thumbnail-info">
+                                    <a class="creator-image" href="/users/Ax0lts/"><img alt="Ax0lts" src="https://cdn2.scratch.mit.edu/get_image/user/72092169_32x32.png"></a>
+                                    <div class="thumbnail-title">
+                                       <a href="/projects/707844138/" title="The Ultimate Castaways MAP!">The Ultimate Castaways MAP!</a>
+                                       <div class="thumbnail-creator"><a href="/users/Ax0lts/">Ax0lts</a></div>
+                                    </div>
+                                 </div> db_client["read_messages"]["__data"].insert_one({"user":user,"read_messages":object.pop("read_messages")})
+                              </div>-->
+                           </div>
+                        </div>
+                        <button class="button" type="button" onclick="loadMore()" id="more"><span>Load more</span></button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="footer">
+               <div class="inner">
+                   Shutdown notice:<br>Because replit is discontinuing free dynamic hosting, this project will shut down on 01/01/2024.<br><br>Made by TimMcCool. Not affiliated with the Scratch team.<br>The shown projects and thumbnails belong to the Scratchers who created them.
+               </div>
+                <script>
+                    const options = {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                      hour: "numeric",
+                      minute: "numeric"
+                    };
+                    var dt = new Date();
+                    document.getElementById("refresh").innerHTML = dt.toLocaleDateString(options, options);
+                </script>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
