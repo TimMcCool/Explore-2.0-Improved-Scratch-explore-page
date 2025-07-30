@@ -8,7 +8,7 @@ Screenshot (from 11/29/2023):
 
 # Features
 - Updates multiple times every day
-- Features trending projects (based on loves / time)
+- Features trending projects (based on loves / time. the actual formula is more complex)
 - Not depending on Scratch's indexer
 - Less glitchy than Scratch's explore page
 - Tags in the description have the same priority as title tags
